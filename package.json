@@ -2,7 +2,7 @@
   "name": "git-intelligence",
   "displayName": "Git Intelligence",
   "description": "AI-powered Git commit message generator for VS Code",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "JadenXiong",
   "logo": "logo.png",
   "icon": "logo.png",
