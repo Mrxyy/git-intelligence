@@ -34,11 +34,11 @@ build_extension() {
     
     # 安装依赖
     echo "📦 安装依赖..."
-    npm install
+    pnpm install
     
     # 编译 TypeScript
     echo "⚙️ 编译 TypeScript..."
-    npm run compile
+    pnpm  compile
     
     echo "✅ 构建完成"
 }
@@ -77,7 +77,7 @@ package_extension() {
     echo "📦 打包扩展..."
     
     # 使用 vsce 打包
-    vsce package
+    pnpm package
     
     # 获取生成的 .vsix 文件名
     VSIX_FILE=$(ls *.vsix | head -n 1)
@@ -94,21 +94,44 @@ package_extension() {
 publish_to_marketplace() {
     echo "🌐 发布到 VS Code Marketplace..."
     
-    # 检查是否设置了发布令牌
-    if [ -z "$VSCE_PAT" ]; then
-        echo "⚠️ 未设置 VSCE_PAT 环境变量"
-        echo "请设置您的 Visual Studio Marketplace Personal Access Token"
-        echo "export VSCE_PAT=your_token_here"
-        echo ""
-        echo "或者手动发布："
-        echo "vsce publish -p YOUR_TOKEN"
+    # 获取已打包的 .vsix 文件
+    VSIX_FILE=$(ls *.vsix | head -n 1)
+    if [ -z "$VSIX_FILE" ]; then
+        echo "❌ 未找到 .vsix 文件，请先运行打包步骤"
         return 1
     fi
     
-    # 发布扩展
-    vsce publish -p "$VSCE_PAT"
+    echo "📦 使用已打包文件: $VSIX_FILE"
     
-    echo "✅ 扩展已发布到 VS Code Marketplace"
+    # 检查是否已经登录（通过检查是否有 publisher）
+    echo "🔍 检查登录状态..."
+    if vsce ls-publishers &> /dev/null; then
+        echo "✅ 已登录，开始发布..."
+        # 使用已打包的 .vsix 文件发布（临时禁用 set -e 以处理发布失败的情况）
+        set +e
+        vsce publish --packagePath "$VSIX_FILE"
+        local publish_result=$?
+        set -e
+        
+        if [ $publish_result -eq 0 ]; then
+            echo "✅ 扩展已发布到 VS Code Marketplace"
+            return 0
+        else
+            echo "❌ 发布失败"
+            return 1
+        fi
+    else
+        echo "⚠️ 未登录到 Visual Studio Marketplace"
+        echo "请先登录："
+        echo "vsce login <publisher-name>"
+        echo ""
+        echo "或者使用 Personal Access Token 发布已打包文件："
+        echo "vsce publish -p YOUR_TOKEN --packagePath $VSIX_FILE"
+        echo ""
+        echo "如果还没有 publisher，请先创建："
+        echo "https://marketplace.visualstudio.com/manage"
+        return 1
+    fi
 }
 
 # 创建 GitHub Release
