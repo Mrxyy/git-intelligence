@@ -100,19 +100,32 @@
     "publish": "./scripts/publish.sh",
     "test": "npm run compile && node ./out/test/runTest.js",
     "lint": "eslint src --ext ts",
+    "lint:fix": "eslint src --ext ts --fix",
+    "format": "prettier --write \"src/**/*.{ts,js,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,json}\"",
+    "check": "npm run lint && npm run format:check",
+    "fix": "npm run lint:fix && npm run format",
     "clean": "rm -rf out *.vsix"
   },
   "dependencies": {
-    "ai": "^3.4.32",
-    "@ai-sdk/openai": "^0.0.66",
     "@ai-sdk/anthropic": "^0.0.54",
-    "@ai-sdk/google": "^0.0.52"
+    "@ai-sdk/google": "^0.0.52",
+    "@ai-sdk/openai": "^0.0.66",
+    "ai": "^3.4.32"
   },
   "devDependencies": {
+    "@types/eslint": "^9.6.1",
     "@types/node": "16.x",
     "@types/node-fetch": "^2.6.4",
     "@types/vscode": "^1.102.0",
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.36.0",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
+    "prettier": "^3.6.2",
     "typescript": "^4.9.4",
+    "typescript-eslint": "^8.36.0",
     "vite": "^5.0.0"
   }
 }
