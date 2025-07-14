@@ -1,0 +1,24 @@
+# 编译输出
+out/
+node_modules/
+
+# VS Code 配置
+.vscode/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 依赖锁定文件
+package-lock.json
+yarn.lock
+
+# TypeScript缓存
+*.tsbuildinfo

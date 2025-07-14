@@ -1,0 +1,99 @@
+{
+  "name": "git-copilot",
+  "displayName": "Git Copilot",
+  "description": "AI-powered Git commit message generator for VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "SCM Providers"
+  ],
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "automation",
+    "productivity"
+  ],
+  "activationEvents": [
+    "onCommand:git-copilot.generateCommitMessage"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-copilot.generateCommitMessage",
+        "title": "Generate AI Commit Message",
+        "icon": "$(sparkle)"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "git-copilot.generateCommitMessage",
+          "when": "scmProvider == git",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Git Copilot",
+      "properties": {
+        "gitCopilot.aiProvider": {
+          "type": "string",
+          "enum": [
+            "openai",
+            "anthropic",
+            "google"
+          ],
+          "default": "openai",
+          "description": "AI服务提供商"
+        },
+        "gitCopilot.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "AI服务的API密钥",
+          "markdownDescription": "⚠️ **安全提示**: API密钥将被存储在VS Code设置中，请确保您信任此环境。"
+        },
+        "gitCopilot.modelName": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "使用的AI模型名称"
+        },
+        "gitCopilot.promptTemplate": {
+          "type": "string",
+          "default": "请根据以下Git差异内容生成一个简洁、描述性的提交信息。提交信息应该：\n1. 使用中文\n2. 简洁明了，不超过50个字符的标题\n3. 如果需要，可以包含详细描述\n4. 遵循常见的Git提交规范\n书写规范:\n${lintStyles}Git差异内容：\n${diff}\n请只返回提交信息，不要包含其他解释文字：",
+          "markdownDescription": "用于生成提交信息的Prompt模板。\n\n**配置优先级（从高到低）：**\n1. 项目根目录的 `git-message-prompt.md` 文件\n2. `commitlint.config.js` 中的 `gitCopilot.promptTemplate`\n3. 此VS Code设置\n4. 默认模板\n\n**可用占位符：**\n- `${diff}` - Git差异内容\n- `${lintStyles}` - 代码规范样式信息（来自commitlint配置）\n\n**使用说明：**\n- 推荐在项目根目录创建 `git-message-prompt.md` 文件来自定义项目专用的提示模板\n- 支持多行文本，使用 `\\n` 表示换行\n- 建议在模板中明确指定语言、格式和规范要求\n- 可参考项目中的 `git-message-prompt.example.md` 示例文件"
+        },
+        "gitCopilot.language": {
+          "type": "string",
+          "enum": [
+            "zh-CN",
+            "en-US"
+          ],
+          "default": "zh-CN",
+          "description": "生成提交信息的语言"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "ai": "^3.4.32",
+    "@ai-sdk/openai": "^0.0.66",
+    "@ai-sdk/anthropic": "^0.0.54",
+    "@ai-sdk/google": "^0.0.52"
+  },
+  "devDependencies": {
+    "@types/node": "16.x",
+    "@types/node-fetch": "^2.6.4",
+    "@types/vscode": "^1.102.0",
+    "typescript": "^4.9.4"
+  }
+}
