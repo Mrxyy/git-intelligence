@@ -287,7 +287,7 @@ export class ConfigService {
         }
         
         if (config.gitCopilot) {
-            info += '- 包含Git Copilot专用配置\n';
+            info += '- 包含Git Intelligence专用配置\n';
         }
 
         return info;

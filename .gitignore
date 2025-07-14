@@ -22,3 +22,4 @@ yarn.lock
 
 # TypeScript缓存
 *.tsbuildinfo
+*.vsix

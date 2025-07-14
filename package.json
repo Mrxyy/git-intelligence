@@ -1,10 +1,21 @@
 {
-  "name": "git-copilot",
-  "displayName": "Git Copilot",
+  "name": "git-intelligence",
+  "displayName": "Git Intelligence",
   "description": "AI-powered Git commit message generator for VS Code",
   "version": "0.0.1",
+  "publisher": "JadenXiong",
+  "logo": "logo.png",
+  "icon": "logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mrxyy/git-intelligence.git"
+  },
+  "homepage": "https://github.com/Mrxyy/git-intelligence#readme",
+  "bugs": {
+    "url": "https://github.com/Mrxyy/git-intelligence/issues"
+  },
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.102.0"
   },
   "categories": [
     "Other",
@@ -18,13 +29,13 @@
     "productivity"
   ],
   "activationEvents": [
-    "onCommand:git-copilot.generateCommitMessage"
+    "onCommand:git-intelligence.generateCommitMessage"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "git-copilot.generateCommitMessage",
+        "command": "git-intelligence.generateCommitMessage",
         "title": "Generate AI Commit Message",
         "icon": "$(sparkle)"
       }
@@ -32,14 +43,14 @@
     "menus": {
       "scm/title": [
         {
-          "command": "git-copilot.generateCommitMessage",
+          "command": "git-intelligence.generateCommitMessage",
           "when": "scmProvider == git",
           "group": "navigation"
         }
       ]
     },
     "configuration": {
-      "title": "Git Copilot",
+      "title": "Git Intelligence",
       "properties": {
         "gitCopilot.aiProvider": {
           "type": "string",
@@ -80,9 +91,16 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run build",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --no-dependencies",
+    "publish": "./scripts/publish.sh",
+    "test": "npm run compile && node ./out/test/runTest.js",
+    "lint": "eslint src --ext ts",
+    "clean": "rm -rf out *.vsix"
   },
   "dependencies": {
     "ai": "^3.4.32",
@@ -94,6 +112,7 @@
     "@types/node": "16.x",
     "@types/node-fetch": "^2.6.4",
     "@types/vscode": "^1.102.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite": "^5.0.0"
   }
 }

@@ -7,10 +7,10 @@ import { ConfigService } from './services/configService';
 let outputChannel: vscode.OutputChannel;
 
 export function activate(context: vscode.ExtensionContext) {
-    outputChannel = vscode.window.createOutputChannel('Git Copilot');
-    outputChannel.appendLine('Git Copilot 插件已激活');
+    outputChannel = vscode.window.createOutputChannel('Git Intelligence');
+    outputChannel.appendLine('Git Intelligence 插件已激活');
 
-    const disposable = vscode.commands.registerCommand('git-copilot.generateCommitMessage', async () => {
+    const disposable = vscode.commands.registerCommand('git-intelligence.generateCommitMessage', async () => {
         try {
             await generateCommitMessage();
         } catch (error) {

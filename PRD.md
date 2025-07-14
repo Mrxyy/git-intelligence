@@ -1,4 +1,4 @@
- # git-copilot
+ # git-intelligence
  > 这个项目是一个vs code 插件,Git集成将人工智能辅助直接引入您的版本控制工作流程。无需离开编辑器即可生成提交信息。。
 
 + 功能流程：

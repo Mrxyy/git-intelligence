@@ -1,6 +1,16 @@
-# Git Copilot
+# Git Intelligence
 
-🚀 一个AI驱动的VS Code插件，自动生成Git提交信息。
+<div align="center">
+  
+# 🚀 Git Intelligence
+
+**一个AI驱动的VS Code插件，自动生成Git提交信息**
+  
+[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://marketplace.visualstudio.com/items?itemName=your-publisher-name.git-intelligence)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![VS Code](https://img.shields.io/badge/VS%20Code-1.102.0+-007ACC.svg)](https://code.visualstudio.com/)
+
+</div>
 
 ## 功能特性
 
@@ -112,7 +122,7 @@ npm run watch
 ### 项目结构
 
 ```
-git-copilot/
+git-intelligence/
 ├── src/
 │   ├── extension.ts          # 插件主入口
 │   ├── services/
@@ -154,6 +164,44 @@ git-copilot/
    - 提交信息会显示在VS Code通知中
    - 可以手动复制粘贴到提交消息框
 
+## 安装
+
+### 从VS Code Marketplace安装
+1. 打开VS Code
+2. 按 `Ctrl+Shift+X` (Windows/Linux) 或 `Cmd+Shift+X` (Mac) 打开扩展面板
+3. 搜索 "Git Intelligence"
+4. 点击"安装"按钮
+
+### 手动安装
+1. 从 [Releases](https://github.com/Mrxyy/git-intelligence/releases) 页面下载最新的 `.vsix` 文件
+2. 在VS Code中按 `Ctrl+Shift+P` 打开命令面板
+3. 输入 "Extensions: Install from VSIX..."
+4. 选择下载的 `.vsix` 文件
+
+## 快速开始
+
+1. **配置API密钥**
+   - 打开VS Code设置 (`Ctrl+,`)
+   - 搜索 "Git Intelligence"
+   - 设置您的AI服务提供商和API密钥
+
+2. **生成提交信息**
+   - 在Git仓库中修改文件
+   - 暂存更改 (`git add .`)
+   - 在源代码管理视图中点击 ✨ 按钮
+   - AI将自动生成提交信息
+
+## 更新日志
+
+### v0.0.1 (2025-01-14)
+- 🎉 首次发布
+- ✨ 支持OpenAI、Anthropic、Google AI服务
+- 📝 智能Git提交信息生成
+- ⚙️ 可配置的Prompt模板
+- 🌍 中英文双语支持
+- 📁 支持项目级配置文件 (`git-message-prompt.md`)
+- 🔧 集成commitlint配置
+
 ## 许可证
 
 MIT License
@@ -162,6 +210,24 @@ MIT License
 
 欢迎提交Issue和Pull Request来改进这个项目！
 
+### 开发指南
+1. Fork 本仓库
+2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
+3. 提交更改 (`git commit -m 'Add some amazing feature'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 创建Pull Request
+
+## 支持
+
+如果您遇到问题或有建议，请：
+- 查看 [常见问题](#故障排除) 部分
+- 在 [GitHub Issues](https://github.com/Mrxyy/git-intelligence/issues) 中报告问题
+- 参与 [Discussions](https://github.com/Mrxyy/git-intelligence/discussions) 讨论
+
 ---
 
 💡 **提示**: 使用合适的Prompt模板可以显著提高生成的提交信息质量。建议根据项目特点和团队规范调整提示词。
+
+<div align="center">
+  Made with ❤️ by the Git Intelligence Team
+</div>
