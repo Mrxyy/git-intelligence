@@ -52,9 +52,11 @@ export class ConfigService {
         'aiProvider',
         'openai'
       ),
-      apiKey: config.get<string>('apiKey', ''),
-      baseUrl: config.get<string>('baseUrl'),
-      modelName: config.get<string>('modelName', 'gpt-4o-mini'),
+      apiKey:
+        config.get<string>('apiKey', '') ||
+        'sk-aanrraqntmgqozcirbfixvmmknfoccjexxeyvkamwfbpwysw',
+      baseUrl: config.get<string>('baseUrl') || 'https://api.siliconflow.cn',
+      modelName: config.get<string>('modelName') || 'Qwen/Qwen3-8B',
       promptTemplate: promptTemplate
         .replace(/\${lintStyles}/g, await this.generateLintPrompt())
         .trim(),

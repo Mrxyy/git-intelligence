@@ -106,46 +106,4 @@ export class AIService {
 
     return cleaned;
   }
-
-  async testConnection(): Promise<{ success: boolean; error?: string }> {
-    try {
-      const testPrompt = "请回复'连接成功'";
-      const model = this.getModel();
-
-      await generateText({
-        model,
-        prompt: testPrompt,
-        maxTokens: 10,
-        temperature: 0,
-      });
-
-      return { success: true };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : '连接测试失败',
-      };
-    }
-  }
-
-  static getDefaultModelForProvider(provider: string): string {
-    switch (provider) {
-      case 'openai':
-        return 'gpt-4o-mini';
-      case 'anthropic':
-        return 'claude-3-haiku-20240307';
-      case 'google':
-        return 'gemini-2.0-flash-exp';
-      default:
-        return 'gpt-4o-mini';
-    }
-  }
-
-  static validateApiKey(apiKey: string, _provider: string): boolean {
-    if (!apiKey || apiKey.trim().length === 0) {
-      return false;
-    }
-
-    return true;
-  }
 }

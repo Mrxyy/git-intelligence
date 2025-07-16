@@ -2,7 +2,7 @@
   "name": "git-intelligence",
   "displayName": "Git Intelligence",
   "description": "AI-powered Git commit message generator for VS Code",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "JadenXiong",
   "logo": "logo.png",
   "icon": "logo.png",
@@ -59,12 +59,10 @@
             "anthropic",
             "google"
           ],
-          "default": "openai",
           "description": "AI服务提供商"
         },
         "gitCopilot.apiKey": {
           "type": "string",
-          "default": "",
           "description": "AI服务的API密钥",
           "markdownDescription": "⚠️ **安全提示**: API密钥将被存储在VS Code设置中，请确保您信任此环境。"
         },
@@ -73,13 +71,11 @@
             "string",
             "null"
           ],
-          "default": null,
           "description": "AI服务的Base URL",
           "markdownDescription": "用于代理或自定义API端点。如果留空，将使用默认的API地址。"
         },
         "gitCopilot.modelName": {
           "type": "string",
-          "default": "gpt-4o-mini",
           "description": "使用的AI模型名称"
         },
         "gitCopilot.promptTemplate": {

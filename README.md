@@ -14,13 +14,14 @@
 
 ## 功能特性
 
-- 🤖 **AI智能生成**: 基于Vercel AI SDK，支持OpenAI、Anthropic、Google等多个AI服务提供商
-- 📝 **自动分析**: 自动分析Git暂存区的变更内容
-- 🎯 **一键生成**: 点击按钮即可生成描述性的提交信息
-- ⚙️ **可配置**: 支持自定义Prompt模板和AI模型
-- 🌍 **多语言**: 支持中文和英文提交信息生成
-- 🔒 **安全**: API密钥本地存储，保护隐私
-- ⚡ **高性能**: 使用统一的AI SDK接口，提供一致的体验
+- 🚀 **零配置，开箱即用**: 默认使用提供免费高速的AI服务，无需任何配置即可开始使用。
+- 🤖 **AI智能生成**: 基于Vercel AI SDK，支持OpenAI、Anthropic、Google等多个AI服务提供商。
+- 📝 **自动分析**: 自动分析Git暂存区的变更内容。
+- 🎯 **一键生成**: 点击按钮即可生成描述性的提交信息。
+- ⚙️ **高度可配置**: 支持自定义`baseUrl`以使用代理或第三方兼容API。支持自定义Prompt模板和AI模型。
+- 🌍 **多语言**: 支持中文和英文提交信息生成。
+- 🔒 **安全**: API密钥本地存储，保护隐私。
+- ⚡ **高性能**: 使用统一的AI SDK接口，提供一致的体验。
 
 ## 使用方法
 
@@ -58,11 +59,12 @@ module.exports = {
 ```
 
 #### 方式3：VS Code设置
-在VS Code设置中配置：
-- **AI Provider**: 选择AI服务提供商 (OpenAI/Anthropic/Google)
-- **API Key**: 输入对应AI服务的API密钥
-- **Model Name**: 选择AI模型 (如 gpt-4o-mini)
-- **Prompt Template**: 自定义提示词模板
+在VS Code设置中配置（已默认配置为Groq免费服务，可直接使用）：
+- **AI Provider**: 选择AI服务提供商。
+- **API Key**: 输入对应AI服务的API密钥。
+- **Base URL**: 自定义API端点。
+- **Model Name**: 选择AI模型 (默认为 `llama3-8b-8192`)。
+- **Prompt Template**: 自定义提示词模板。
 
 ### 2. 生成提交信息
 
@@ -73,19 +75,19 @@ module.exports = {
 5. AI将自动分析变更并生成提交信息
 6. 提交信息会自动填入提交消息输入框
 
-## 支持的AI服务
+## 支持的自定义AI服务
 
-### OpenAI
-- 模型示例: `gpt-4o-mini`, `gpt-4o`, `gpt-3.5-turbo`
-- API密钥格式: `sk-...`
+### Groq格式 (默认)
+- **Provider**: `groq`
+- **Base URL**: `https://free-groq.deno.dev`
+- **API Key**: `free`
+- **Model**: `llama3-8b-8192`
 
-### Anthropic
-- 模型示例: `claude-3-haiku-20240307`, `claude-3-sonnet-20240229`
-- API密钥格式: `sk-ant-...`
+### OpenAI格式
 
-### Google
-- 模型示例: `gemini-pro`, `gemini-pro-vision`
-- 需要Google Cloud API密钥
+### Anthropic格式
+
+### Google格式
 
 ## 配置示例
 
@@ -175,10 +177,16 @@ git-intelligence/
 
 ## 快速开始
 
-1. **配置API密钥**
-   - 打开VS Code设置 (`Ctrl+,`)
-   - 搜索 "Git Intelligence"
-   - 设置您的AI服务提供商和API密钥
+1. **生成提交信息**
+   - **无需配置**，直接在Git仓库中修改文件。
+   - 暂存更改 (`git add .`)。
+   - 在源代码管理视图中点击 ✨ 按钮。
+   - AI将自动生成提交信息。
+
+2. **（可选）切换AI服务**
+   - 打开VS Code设置 (`Ctrl+,`)。
+   - 搜索 "Git Intelligence"。
+   - 设置您的AI服务提供商、API密钥和模型。
 
 2. **生成提交信息**
    - 在Git仓库中修改文件
