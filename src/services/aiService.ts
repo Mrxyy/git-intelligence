@@ -37,18 +37,21 @@ export class AIService {
       case 'openai': {
         const openaiProvider = createOpenAI({
           apiKey: this.config.apiKey,
+          baseURL: this.config.baseUrl,
         });
         return openaiProvider(this.config.modelName);
       }
       case 'anthropic': {
         const anthropicProvider = createAnthropic({
           apiKey: this.config.apiKey,
+          baseURL: this.config.baseUrl,
         });
         return anthropicProvider(this.config.modelName);
       }
       case 'google': {
         const googleProvider = createGoogleGenerativeAI({
           apiKey: this.config.apiKey,
+          baseURL: this.config.baseUrl,
         });
         return googleProvider(this.config.modelName);
       }

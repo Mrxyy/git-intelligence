@@ -5,6 +5,7 @@ import * as path from 'path';
 export interface GitCopilotConfig {
   aiProvider: 'openai' | 'anthropic' | 'google';
   apiKey: string;
+  baseUrl?: string;
   modelName: string;
   promptTemplate: string;
   language: 'zh-CN' | 'en-US';
@@ -52,6 +53,7 @@ export class ConfigService {
         'openai'
       ),
       apiKey: config.get<string>('apiKey', ''),
+      baseUrl: config.get<string>('baseUrl'),
       modelName: config.get<string>('modelName', 'gpt-4o-mini'),
       promptTemplate: promptTemplate
         .replace(/\${lintStyles}/g, await this.generateLintPrompt())
@@ -203,6 +205,14 @@ export class ConfigService {
 
     if (!config.apiKey.trim()) {
       errors.push('API密钥不能为空');
+    }
+
+    if (config.baseUrl) {
+      try {
+        new URL(config.baseUrl);
+      } catch {
+        errors.push('Base URL不是一个合法的URL');
+      }
     }
 
     if (!config.modelName.trim()) {

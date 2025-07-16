@@ -39,11 +39,6 @@
 2. 格式：`<类型>(<范围>): <描述>`
 3. 类型包括：feat, fix, docs, style, refactor, test, chore
 4. 描述简洁明了，不超过50个字符
-
-## Git差异内容
-${diff}
-
-请严格按照上述规范生成提交信息：
 ```
 
 #### 方式2：commitlint.config.js
